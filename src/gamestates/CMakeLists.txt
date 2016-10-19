@@ -1,3 +1,5 @@
 register_gamestate("loading")
 register_gamestate("dosowisko")
-register_gamestate("empty")
+register_gamestate("burndt")
+register_gamestate("dispatcher")
+register_gamestate("script")

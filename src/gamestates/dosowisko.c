@@ -23,8 +23,8 @@
 #include <math.h>
 #include <libsuperderpy.h>
 
-#define NEXT_GAMESTATE "empty"
-#define SKIP_GAMESTATE NEXT_GAMESTATE
+#define NEXT_GAMESTATE "burndt"
+#define SKIP_GAMESTATE "script"
 
 struct GamestateResources {
 		ALLEGRO_FONT *font;

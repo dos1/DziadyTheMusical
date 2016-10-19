@@ -20,14 +20,20 @@
  */
 
 #include "common.h"
+#include <stdio.h>
 #include <libsuperderpy.h>
 
 struct CommonResources* CreateGameData(struct Game *game) {
 	struct CommonResources *data = calloc(1, sizeof(struct CommonResources));
+	data->script = "000-intro";
+
+	data->music = al_load_audio_stream(GetDataFilePath(game, "music.ogg"), 4, 1024);
+	al_set_audio_stream_playing(data->music, false);
+	al_attach_audio_stream_to_mixer(data->music, game->audio.music);
+
 	return data;
 }
 
 void DestroyGameData(struct Game *game, struct CommonResources *data) {
 	free(data);
 }
-

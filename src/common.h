@@ -3,7 +3,10 @@
 
 struct CommonResources {
 		// Fill in with common data accessible from all gamestates.
+	char *script;
+
+	ALLEGRO_AUDIO_STREAM *music;
 };
 
 struct CommonResources* CreateGameData(struct Game *game);
-void DestroyGameData(struct Game *game, struct CommonResources *data);
+void DestroyGameData(struct Game *game, struct CommonResources *resources);

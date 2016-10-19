@@ -1,0 +1,114 @@
+START
+SETLC
+LINE0 
+LINE1 Ciemno wszędzie, głucho wszędzie
+LINE2 co to będzie, co to będzie...
+LINE3
+WAITF 600
+CLEAR
+WAITF 700
+LINE1 DZIADY
+LINE2 The Musical
+WAITF 1400
+CLEAR
+WAITF 1500
+LINE0 Zamknĳcie drzwi od kaplicy
+LINE1 I stańcie dokoła truny
+LINE2 Żadnej lampy, żadnej świécy,
+LINE3 W oknach zawieście całuny.
+WAITF 3030
+CLEAR
+SETLL
+SCENE palac
+ACTOR palac
+LINE1 Niech księżyca jasność blada
+LINE2 Szczelinami tu nie wpada
+WAITF 3900
+SCENE blank
+ACTOR blank
+SETLC
+CLEAR
+WAITF 4640
+LINE1 Każda spieszcie do gromady
+LINE2 Oto obchoǳimy ǲiady
+WAITF 5600
+CLEAR
+WAITF 5650
+PAUSE
+LINE1 Akt
+LINE2 I  
+DELAY 3
+CLEAR
+START
+SETLL
+WAITF 5700
+ACTOR zjawa
+SCENE zjawa
+LINE0 Panie mój, przychodzę w nocy
+LINE1 Ratuj mnie, udziel pomocy
+LINE2 demon mą duszę zniewala
+LINE3 odejść stąd mi nie pozwala
+WAITF 7300
+LINE0 choć człowiekiem dobrym byłem
+LINE1 w życiu złego nie czyniłem
+LINE2 biednym zawsze pomagałem
+LINE3 500+ sfinansowałem
+WAITF 8950
+ACTOR blank
+SCENE blank
+CLEAR
+WAITF 9050
+ACTOR dziewcze
+SCENE dziewcze
+LINE0 dziewczynę w lesie zabili
+LINE1 skopali ją i pobili
+LINE2 ona ta piękna niewinna
+LINE3 zginąć tak źle nie powinna
+WAITF 10400
+LINE0 ciało to brat jej odnalazł
+LINE1 gdy to zobaczył oszalał
+LINE2 w martwej jej dłoni badylek
+LINE3 a nad nią latał motylek
+WAITF 11850
+ACTOR blank
+SCENE blank
+CLEAR
+WAITF 13620
+ACTOR zjawa
+SCENE zjawa
+LINE0 on myśli sobie że to ja
+LINE1 że jestem sprawcą tego zła
+LINE2 że z zimną krwią jej życie odebrałem
+LINE3 choć jej na oczy nie widziałem
+WAITF 15950
+CLEAR
+WAITF 18400
+LINE0 on myśli sobie że to ja
+LINE1 że jestem sprawcą tego zła
+LINE2 że z zimną krwią jej życie odebrałem
+LINE3 choć jej na oczy nie widziałem
+WAITF 20750
+CLEAR
+WAITF 21720
+LINE0 A czegóż potrzeba dla duszy,
+LINE1 Aby uniknąć katuszy?
+LINE2 Czy prosisz o chwałę nieba?
+LINE3 Czy o poświęcone gody?
+WAITF 23400
+CLEAR
+WAITF 23500
+LINE1 Jest dostatkiem mleka, chleba,
+LINE2 Są owoce i jagody.
+WAITF 24400
+LINE1 Mów, czego trzeba dla duszy,
+LINE2 Aby się dostać do nieba?
+WAITF 25200
+CLEAR
+WAITF 26100
+LINE0 Że dopóty w ciele muszę
+LINE1 Potępioną włóczyć duszę,
+LINE2 Nim kto z was, poddani moi,
+LINE3 Pożywi mię i napoi.
+WAITF 27000
+CLEAR
+-----
