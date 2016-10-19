@@ -131,9 +131,9 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 		                      0,0, game->viewport.width, game->viewport.height, 0);
 	}
 
-	/*
-	al_draw_filled_rectangle(0, 0, 320, 180, al_map_rgba(0, 0, 0, 255-data->fade));
 
+	al_draw_filled_rectangle(0, 0, 320, 180, al_map_rgba(0, 0, 0, 255-data->fade));
+/*
 	if (data->tut_text) {
 		al_draw_filled_rectangle(0, 0, 320, 180, al_map_rgba(0, 0, 0, 192));
 				DrawWrappedTextWithShadow(data->font, al_map_rgb(255,255,255), 5,  game->viewport.height / 2,

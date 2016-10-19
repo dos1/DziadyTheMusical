@@ -1,3 +1,4 @@
+FADEI
 START
 SETLC
 LINE0 
@@ -26,13 +27,17 @@ LINE2 Szczelinami tu nie wpada
 WAITF 3900
 SCENE blank
 ACTOR blank
-SETLC
 CLEAR
 WAITF 4640
+SCENE guslarz
+ACTOR guslarz
 LINE1 Każda spieszcie do gromady
 LINE2 Oto obchoǳimy ǲiady
 WAITF 5600
 CLEAR
+SETLC
+SCENE blank
+ACTOR blank
 WAITF 5650
 PAUSE
 LINE1 Akt
@@ -54,8 +59,6 @@ LINE1 w życiu złego nie czyniłem
 LINE2 biednym zawsze pomagałem
 LINE3 500+ sfinansowałem
 WAITF 8950
-ACTOR blank
-SCENE blank
 CLEAR
 WAITF 9050
 ACTOR dziewcze
@@ -64,15 +67,18 @@ LINE0 dziewczynę w lesie zabili
 LINE1 skopali ją i pobili
 LINE2 ona ta piękna niewinna
 LINE3 zginąć tak źle nie powinna
+WAITF 10050
+ACTOR dziewcze-dead
 WAITF 10400
 LINE0 ciało to brat jej odnalazł
 LINE1 gdy to zobaczył oszalał
 LINE2 w martwej jej dłoni badylek
 LINE3 a nad nią latał motylek
 WAITF 11850
+CLEAR
+WAITF 12350
 ACTOR blank
 SCENE blank
-CLEAR
 WAITF 13620
 ACTOR zjawa
 SCENE zjawa
@@ -80,16 +86,33 @@ LINE0 on myśli sobie że to ja
 LINE1 że jestem sprawcą tego zła
 LINE2 że z zimną krwią jej życie odebrałem
 LINE3 choć jej na oczy nie widziałem
+WAITF 14860
+SCENE dziad
+ACTOR dziad
+WAITF 15420
+SCENE zjawa
+ACTOR zjawa-zla
 WAITF 15950
 CLEAR
+----- FADEO
+WAITF 18000
+----- FADEI
 WAITF 18400
+ACTOR zjawa
 LINE0 on myśli sobie że to ja
 LINE1 że jestem sprawcą tego zła
 LINE2 że z zimną krwią jej życie odebrałem
 LINE3 choć jej na oczy nie widziałem
+WAITF 19600
+ACTOR zjawa-zla
 WAITF 20750
 CLEAR
+WAITF 20900
+ACTOR blank
+SCENE blank
 WAITF 21720
+ACTOR guslarz-worry
+SCENE guslarz
 LINE0 A czegóż potrzeba dla duszy,
 LINE1 Aby uniknąć katuszy?
 LINE2 Czy prosisz o chwałę nieba?
@@ -100,15 +123,27 @@ WAITF 23500
 LINE1 Jest dostatkiem mleka, chleba,
 LINE2 Są owoce i jagody.
 WAITF 24400
+ACTOR guslarz
 LINE1 Mów, czego trzeba dla duszy,
 LINE2 Aby się dostać do nieba?
 WAITF 25200
 CLEAR
+WAITF 25300
+ACTOR blank
+SCENE blank
+WAITF 26000
+ACTOR zjawa
+SCENE zjawa
 WAITF 26100
 LINE0 Że dopóty w ciele muszę
 LINE1 Potępioną włóczyć duszę,
 LINE2 Nim kto z was, poddani moi,
 LINE3 Pożywi mię i napoi.
 WAITF 27000
+WAITF 27080
+ACTOR blank
+SCENE blank
 CLEAR
+WAITF 28400
+CLOSE
 -----

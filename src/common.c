@@ -30,6 +30,7 @@ struct CommonResources* CreateGameData(struct Game *game) {
 	data->music = al_load_audio_stream(GetDataFilePath(game, "music.ogg"), 4, 1024);
 	al_set_audio_stream_playing(data->music, false);
 	al_attach_audio_stream_to_mixer(data->music, game->audio.music);
+	//al_set_audio_stream_speed(data->music, 2);
 
 	return data;
 }
