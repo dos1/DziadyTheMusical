@@ -18,9 +18,11 @@ LINE1 Sebastian Krzyszkowiak
 LINE2 Przemysław Pietrzak
 WAITF 2010
 CLEAR
-LINE1 Gościnnie:
-LINE2 Mateusz Pusty
+LINE0 Gościnnie:
+LINE1 Mateusz Pusty
+LINE2 Oli
 WAITF 2400
+CLEAR
 LINE1 Gra powstała podczas
 LINE2 Game Jamu w Teatrze 2016
 WAITF 3000

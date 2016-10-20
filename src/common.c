@@ -25,7 +25,7 @@
 
 struct CommonResources* CreateGameData(struct Game *game) {
 	struct CommonResources *data = calloc(1, sizeof(struct CommonResources));
-	data->script = "akt3";
+	data->script = "akt1";
 
 	data->guilty = rand() % 2;
 

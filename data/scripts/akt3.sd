@@ -42,11 +42,11 @@ VOTE!
 WAITF 7500
 EVOTE
 CLEAR
-WAITF 7840
+WAITF 7830
 SCENE dziewcze
 ACTOR dziewcze
 SETLL
-WAITF 7900
+WAITF 7860
 GUILT guilty
 LINE0 To nie on mi życie zabrał
 LINE1 jego dłonie mnie nie biły
@@ -58,7 +58,7 @@ SCRIP outro
 LABEL guilty
 LINE0 On mej śmierci strasznej winien
 LINE1 życia mego kres położył
-LINE2 Cierpieć za czyn ten powinnien
+LINE2 Cierpieć za ten czyn powinnien
 LINE3 A rękawiczki tylko włożył
 WAITF 9800
 SCRIP outro
