@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Dziady The Musical
+Exec=dziadythemusical
+Comment=Dziady The Musical
+Icon=dziadythemusical
+Terminal=false
+Categories=Game;ArcadeGame;
