@@ -177,10 +177,11 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text2);
 	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text3);
 
+	if (game->data->music) {
 	char status[255];
 	snprintf(status, 255, "%f", al_get_audio_stream_position_secs(game->data->music));
 	al_draw_text(data->font, al_map_rgb(255,255,255), game->viewport.width*0.5, game->viewport.height*0.9, ALLEGRO_ALIGN_CENTER, status);
-
+}
 }
 
 void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, ALLEGRO_EVENT *ev) {
@@ -313,6 +314,28 @@ bool WaitFor(struct Game *game, struct TM_Action *action, enum TM_ActionState st
 	if (state == TM_ACTIONSTATE_RUNNING) {
 		if (data->skip_to) { return true; }
 		return !(al_get_audio_stream_position_secs(game->data->music) * 100 < data->delay);
+	}
+	return true;
+}
+
+
+bool LoadMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
+	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
+	char *arg = TM_GetArg(action->arguments, 1);
+	if (state == TM_ACTIONSTATE_START) {
+		if (data->skip_to) { return true; }
+		data->delay = strtoumax(arg, NULL, 10);
+	}
+	if (state == TM_ACTIONSTATE_RUNNING) {
+		char path[255];
+		snprintf(path, 255, "%s.ogg", arg);
+		if (game->data->music) {
+			al_destroy_audio_stream(game->data->music);
+		}
+		game->data->music = al_load_audio_stream(GetDataFilePath(game, path), 4, 1024);
+		al_set_audio_stream_playing(game->data->music, false);
+		al_attach_audio_stream_to_mixer(game->data->music, game->audio.music);
+
 	}
 	return true;
 }
@@ -680,6 +703,8 @@ void InterpretCommand(struct Game *game, struct GamestateResources* data, struct
 		TM_AddAction(timeline, PauseMusic, TM_AddToArgs(NULL, 1, data), "PauseMusic");
 	} else if (strcmp(cmd, "WAITF") == 0) {
 		TM_AddAction(timeline, WaitFor, TM_AddToArgs(NULL, 2, data, arg), "WaitFor");
+	} else if (strcmp(cmd, "LOADM") == 0) {
+		TM_AddAction(timeline, LoadMusic, TM_AddToArgs(NULL, 2, data, arg), "LoadMusic");
 	} else if (strcmp(cmd, "CLEAR") == 0) {
 		TM_AddAction(timeline, SetLine, TM_AddToArgs(NULL, 3, data, &data->text0, arg), "Line0");
 		TM_AddAction(timeline, SetLine, TM_AddToArgs(NULL, 3, data, &data->text1, arg), "Line1");
