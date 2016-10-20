@@ -177,11 +177,11 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text2);
 	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text3);
 
-	if (game->data->music) {
+	/*if (game->data->music) {
 	char status[255];
 	snprintf(status, 255, "%f", al_get_audio_stream_position_secs(game->data->music));
 	al_draw_text(data->font, al_map_rgb(255,255,255), game->viewport.width*0.5, game->viewport.height*0.9, ALLEGRO_ALIGN_CENTER, status);
-}
+}*/
 }
 
 void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, ALLEGRO_EVENT *ev) {
