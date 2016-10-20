@@ -192,9 +192,7 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 		TM_HandleEvent(data->dialogs[i].timeline, ev);
 	}
 	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE)) {
-		  UnloadCurrentGamestate(game); // mark this gamestate to be stopped and unloaded
-			LoadGamestate(game, "menu");
-			StartGamestate(game, "menu");
+		  UnloadAllGamestates(game); // mark this gamestate to be stopped and unloaded
 		// When there are no active gamestates, the engine will quit.
 	}
 	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_SPACE)) {
@@ -551,9 +549,7 @@ bool ExitGame(struct Game *game, struct TM_Action *action, enum TM_ActionState s
 	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	if (state == TM_ACTIONSTATE_START) {
 		if (data->skip_to) { return true; }
-		UnloadCurrentGamestate(game);
-		LoadGamestate(game, "menu");
-		StartGamestate(game, "menu");
+		UnloadAllGamestates(game);
 	}
 	return true;
 }
