@@ -86,7 +86,7 @@ LINE0 on myśli sobie że to ja
 LINE1 że jestem sprawcą tego zła
 LINE2 że z zimną krwią jej życie odebrałem
 LINE3 choć jej na oczy nie widziałem
-WAITF 14860
+WAITF 14820
 SCENE dziad
 ACTOR dziad
 WAITF 15420
@@ -94,10 +94,13 @@ SCENE zjawa
 ACTOR zjawa-zla
 WAITF 15950
 CLEAR
+SCENE blank
+ACTOR blank
 ----- FADEO
 WAITF 18000
 ----- FADEI
 WAITF 18400
+SCENE zjawa
 ACTOR zjawa
 LINE0 on myśli sobie że to ja
 LINE1 że jestem sprawcą tego zła

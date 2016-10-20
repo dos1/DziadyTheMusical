@@ -18,15 +18,15 @@ LINE1 gdzie demony, duchy złe
 LINE2 Czy dasz radę wszystkim sprostać?
 LINE3 I przemyślisz złe czyny swe?
 WAITF 3200
-ACTOR zjawa
-SCENE zjawa
+ACTOR dziad
+SCENE dziad
 LINE0 Jeśli dziad ten stary kłamał
 LINE1 Znaczy czysta Twoja dusza
 LINE2 Ktoś inny jej kości łamał
 LINE3 Ty do nieba teraz ruszaj
 WAITF 4270
-ACTOR guslarz
-SCENE guslarz
+ACTOR zjawa
+SCENE zjawa
 LINE0 Ale gdyby prawdę mówił
 LINE1 Gdybyś Ty był sprawcą tego
 LINE2 Z zimną krwią tę dziewkę ubił
