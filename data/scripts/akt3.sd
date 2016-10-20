@@ -1,0 +1,53 @@
+LOADM akt3
+START
+SETLL
+ACTOR guslarz
+SCENE guslarz
+LINE0 Teraz wyrok wydać mogę
+LINE1 Nakarmić Cię i napoić
+LINE2 Wysłać tym do nieba w drogę
+LINE3 Troski wszystkie twe ukoić
+WAITF 1080
+LINE0 To jest nad rozum człowieczy!
+LINE1 W tym są jakieś straszne rzeczy.
+LINE2 Spojrzyj, odezwĳ się przecie!
+LINE3 Czyś ty zabił tamto ǳiecię?
+WAITF 2140
+LINE0 Albo precz Cię stąd odesłać
+LINE1 gdzie demony, duchy złe
+LINE2 Czy dasz radę wszystkim sprostać?
+LINE3 I przemyślisz złe czyny swe?
+WAITF 3200
+ACTOR zjawa
+SCENE zjawa
+LINE0 Jeśli dziad ten stary kłamał
+LINE1 Znaczy czysta Twoja dusza
+LINE2 Ktoś inny jej kości łamał
+LINE3 Ty do nieba teraz ruszaj
+WAITF 4270
+ACTOR guslarz
+SCENE guslarz
+LINE0 Ale gdyby prawdę mówił
+LINE1 Gdybyś Ty był sprawcą tego
+LINE2 Z zimną krwią tę dziewkę ubił
+LINE3 nie unikniesz losu złego
+WAITF 5400
+CLEAR
+SCENE blank
+ACTOR blank
+SETLC
+LINE1 Wybór należy
+LINE2 do Ciebie
+WAITF 7500
+CLEAR
+WAITF 7840
+SCENE dziewcze
+ACTOR dziewcze
+SETLL
+WAITF 7900
+LINE0 On mej śmierci strasznej winien
+LINE1 życia mego kres położył
+LINE2 Cierpiec za czyn ten powinnien
+LINE3 A rękawiczki tylko włożył
+WAITF 9800
+SCRIP outro

@@ -1,0 +1,26 @@
+LOADM outro
+START
+SETLC
+LINE1 DZIADY
+LINE2 The Musical
+WAITF 420
+LINE1 Tekst:
+LINE2 Przemysław Pietrzak
+WAITF 820
+LINE1 Muzyka:
+LINE2 Sebastian Krzyszkowiak
+WAITF 1230
+LINE1 Grafika:
+LINE2 Konrad Burandt
+WAITF 1600
+LINE1 Głosy
+LINE2  
+WAITF 2010
+LINE1 Gościnnie
+WAITF 2400
+LINE1 Gra powstała podczas
+LINE2 Game Jamu w Teatrze 2016
+WAITF 3000
+CLEAR
+WAITF 3390
+CLOSE

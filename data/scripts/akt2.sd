@@ -1,148 +1,47 @@
 LOADM akt2
 START
 SETLC
-LINE0 
-LINE1 Ciemno wszędzie, głucho wszędzie
-LINE2 co to będzie, co to będzie...
-LINE3
-WAITF 600
+WAITF 1260
+LINE1 AKT
+LINE2 II
+WAITF 2150
 CLEAR
-WAITF 700
-LINE1 DZIADY
-LINE2 The Musical
-WAITF 1400
-CLEAR
-WAITF 1500
-LINE0 Zamknĳcie drzwi od kaplicy
-LINE1 I stańcie dokoła truny
-LINE2 Żadnej lampy, żadnej świécy,
-LINE3 W oknach zawieście całuny.
-WAITF 3030
-CLEAR
-SETLL
-SCENE palac
-ACTOR palac
-LINE1 Niech księżyca jasność blada
-LINE2 Szczelinami tu nie wpada
-WAITF 3900
-SCENE blank
-ACTOR blank
-CLEAR
-WAITF 4640
-SCENE guslarz
-ACTOR guslarz
-LINE1 Każda spieszcie do gromady
-LINE2 Oto obchoǳimy ǲiady
-WAITF 5600
-CLEAR
-SETLC
-SCENE blank
-ACTOR blank
-WAITF 5650
-PAUSE
-LINE1 Akt
-LINE2 I  
-DELAY 3
-CLEAR
-START
-SETLL
-WAITF 5700
-ACTOR zjawa
-SCENE zjawa
-LINE0 Panie mój, przychodzę w nocy
-LINE1 Ratuj mnie, udziel pomocy
-LINE2 demon mą duszę zniewala
-LINE3 odejść stąd mi nie pozwala
-WAITF 7300
-LINE0 choć człowiekiem dobrym byłem
-LINE1 w życiu złego nie czyniłem
-LINE2 biednym zawsze pomagałem
-LINE3 500+ sfinansowałem
-WAITF 8950
-CLEAR
-WAITF 9050
-ACTOR dziewcze
-SCENE dziewcze
-LINE0 dziewczynę w lesie zabili
-LINE1 skopali ją i pobili
-LINE2 ona ta piękna niewinna
-LINE3 zginąć tak źle nie powinna
-WAITF 10050
-ACTOR dziewcze-dead
-WAITF 10400
-LINE0 ciało to brat jej odnalazł
-LINE1 gdy to zobaczył oszalał
-LINE2 w martwej jej dłoni badylek
-LINE3 a nad nią latał motylek
-WAITF 11850
-CLEAR
-WAITF 12350
-ACTOR blank
-SCENE blank
-WAITF 13620
-ACTOR zjawa
-SCENE zjawa
-LINE0 on myśli sobie że to ja
-LINE1 że jestem sprawcą tego zła
-LINE2 że z zimną krwią jej życie odebrałem
-LINE3 choć jej na oczy nie widziałem
-WAITF 14860
-SCENE dziad
+WAITF 2420
+LINE0 guślarz w nocy obudzony
+LINE1 przez zmarłej dziewczyny brata
+LINE2 tą wizytą zaskoczony
+LINE3 patrzy nań jak na wariata
+WAITF 3590
 ACTOR dziad
-WAITF 15420
-SCENE zjawa
-ACTOR zjawa-zla
-WAITF 15950
+SCENE dziad
+SETLL
+LINE0 Teraz on z najcięższym duchem
+LINE1 Który do tego padołu
+LINE2 Przykuty zbrodni łańcuchem
+LINE3 Z ciałem i duszą pospołu.
+WAITF 4800
+LINE0 On mą siostrę bił i więził
+LINE1 I swej piwnicy ciemnej, mrocznej
+LINE2 Zwabił ją tam naszyjnikiem
+LINE3 bił ją, coraz mocniej, mocniej
+WAITF 6000
+LINE0 Gdy ręce spuchły mu od bicia,
+LINE1 włożył rękawiczki białe
+LINE2 Jednak w niej nie było życia
+LINE3 Na nic były prośby, żale.
+WAITF 7230
+LINE0 ja sam wszysto to widzałem
+LINE1 przez okienko w tym pałacu
+LINE2 jak się znęcał nad jej ciałem
+LINE3 krwi czerwień jak pole maku
+WAITF 8460
 CLEAR
------ FADEO
-WAITF 18000
------ FADEI
-WAITF 18400
-ACTOR zjawa
-LINE0 on myśli sobie że to ja
-LINE1 że jestem sprawcą tego zła
-LINE2 że z zimną krwią jej życie odebrałem
-LINE3 choć jej na oczy nie widziałem
-WAITF 19600
-ACTOR zjawa-zla
-WAITF 20750
-CLEAR
-WAITF 20900
+WAITF 8700
 ACTOR blank
 SCENE blank
-WAITF 21720
-ACTOR guslarz-worry
-SCENE guslarz
-LINE0 A czegóż potrzeba dla duszy,
-LINE1 Aby uniknąć katuszy?
-LINE2 Czy prosisz o chwałę nieba?
-LINE3 Czy o poświęcone gody?
-WAITF 23400
-CLEAR
-WAITF 23500
-LINE1 Jest dostatkiem mleka, chleba,
-LINE2 Są owoce i jagody.
-WAITF 24400
-ACTOR guslarz
-LINE1 Mów, czego trzeba dla duszy,
-LINE2 Aby się dostać do nieba?
-WAITF 25200
-CLEAR
-WAITF 25300
-ACTOR blank
-SCENE blank
-WAITF 26000
-ACTOR zjawa
-SCENE zjawa
-WAITF 26100
-LINE0 Że dopóty w ciele muszę
-LINE1 Potępioną włóczyć duszę,
-LINE2 Nim kto z was, poddani moi,
-LINE3 Pożywi mię i napoi.
-WAITF 27000
-WAITF 27080
-ACTOR blank
-SCENE blank
-CLEAR
-WAITF 28400
+WAITF 8900
+SETLC
+LINE1 AKT
+LINE2 III
+WAITF 9400
 SCRIP akt3
