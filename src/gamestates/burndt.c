@@ -57,7 +57,7 @@ void Gamestate_Draw(struct Game *game, struct burndtResources* data) {
 		}
 
 		if (data->tick < 190) {
-			  al_clear_to_color(al_map_rgb(82 + (255-82) * light, 82 + (255-82) * light, 186 + (255-186) * light));
+			  al_clear_to_color(al_map_rgb(0, 0, 0));
 				al_draw_scaled_bitmap(data->bitmap, 0, 0, 320, 180, 0, 0, game->viewport.width, game->viewport.height, 0);
 		} else {
 			  al_clear_to_color(al_map_rgb(255 * light, 255 * light, 255 * light));

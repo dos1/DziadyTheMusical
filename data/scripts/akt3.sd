@@ -1,4 +1,4 @@
-LOADM akt3
+LOAD3
 START
 SETLL
 ACTOR guslarz
@@ -10,8 +10,8 @@ LINE3 Troski wszystkie twe ukoić
 WAITF 1080
 LINE0 To jest nad rozum człowieczy!
 LINE1 W tym są jakieś straszne rzeczy.
-LINE2 Spojrzyj, odezwĳ się przecie!
-LINE3 Czyś ty zabił tamto ǳiecię?
+LINE2 Spojrzyj, odezwij się przecie!
+LINE3 Czyś ty zabił tamto dziecię?
 WAITF 2140
 LINE0 Albo precz Cię stąd odesłać
 LINE1 gdzie demony, duchy złe
@@ -36,18 +36,29 @@ CLEAR
 SCENE blank
 ACTOR blank
 SETLC
-LINE1 Wybór należy
-LINE2 do Ciebie
+VOTE!
+----- LINE1 Wybór należy
+----- LINE2 do Ciebie
 WAITF 7500
+EVOTE
 CLEAR
 WAITF 7840
 SCENE dziewcze
 ACTOR dziewcze
 SETLL
 WAITF 7900
+GUILT guilty
+LINE0 To nie on mi życie zabrał
+LINE1 jego dłonie mnie nie biły
+LINE2 Braciom mym pomagać kazał
+LINE3 oni źle mu odpłacili
+WAITF 9800
+SCRIP outro
+-----
+LABEL guilty
 LINE0 On mej śmierci strasznej winien
 LINE1 życia mego kres położył
-LINE2 Cierpiec za czyn ten powinnien
+LINE2 Cierpieć za czyn ten powinnien
 LINE3 A rękawiczki tylko włożył
 WAITF 9800
 SCRIP outro

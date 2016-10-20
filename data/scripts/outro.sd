@@ -10,13 +10,16 @@ WAITF 820
 LINE1 Muzyka:
 LINE2 Sebastian Krzyszkowiak
 WAITF 1230
-LINE1 Grafika:
+LINE1 Ilustracje:
 LINE2 Konrad Burandt
 WAITF 1600
-LINE1 Głosy
-LINE2  
+LINE0 Głosy:
+LINE1 Sebastian Krzyszkowiak
+LINE2 Przemysław Pietrzak
 WAITF 2010
-LINE1 Gościnnie
+CLEAR
+LINE1 Gościnnie:
+LINE2 Mateusz Pusty
 WAITF 2400
 LINE1 Gra powstała podczas
 LINE2 Game Jamu w Teatrze 2016

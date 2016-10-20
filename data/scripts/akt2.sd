@@ -2,12 +2,11 @@ LOADM akt2
 START
 SETLC
 WAITF 1260
-LINE1 AKT
-LINE2 II
+LINE1 AKT II
 WAITF 2150
 CLEAR
 WAITF 2420
-LINE0 guślarz w nocy obudzony
+LINE0 Guślarz w nocy obudzony
 LINE1 przez zmarłej dziewczyny brata
 LINE2 tą wizytą zaskoczony
 LINE3 patrzy nań jak na wariata
@@ -21,7 +20,7 @@ LINE2 Przykuty zbrodni łańcuchem
 LINE3 Z ciałem i duszą pospołu.
 WAITF 4800
 LINE0 On mą siostrę bił i więził
-LINE1 I swej piwnicy ciemnej, mrocznej
+LINE1 W swej piwnicy ciemnej, mrocznej
 LINE2 Zwabił ją tam naszyjnikiem
 LINE3 bił ją, coraz mocniej, mocniej
 WAITF 6000
@@ -30,7 +29,7 @@ LINE1 włożył rękawiczki białe
 LINE2 Jednak w niej nie było życia
 LINE3 Na nic były prośby, żale.
 WAITF 7230
-LINE0 ja sam wszysto to widzałem
+LINE0 Ja sam wszystko to widzałem
 LINE1 przez okienko w tym pałacu
 LINE2 jak się znęcał nad jej ciałem
 LINE3 krwi czerwień jak pole maku
@@ -41,7 +40,6 @@ ACTOR blank
 SCENE blank
 WAITF 8900
 SETLC
-LINE1 AKT
-LINE2 III
+LINE1 AKT III
 WAITF 9400
 SCRIP akt3

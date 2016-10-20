@@ -13,9 +13,9 @@ LINE2 The Musical
 WAITF 1400
 CLEAR
 WAITF 1500
-LINE0 Zamknĳcie drzwi od kaplicy
-LINE1 I stańcie dokoła truny
-LINE2 Żadnej lampy, żadnej świécy,
+LINE0 Zamknijcie drzwi od kaplicy
+LINE1 i stańcie dokoła truny
+LINE2 Żadnej lampy, żadnej świecy,
 LINE3 W oknach zawieście całuny.
 WAITF 3030
 CLEAR
@@ -32,7 +32,7 @@ WAITF 4640
 SCENE guslarz
 ACTOR guslarz
 LINE1 Każda spieszcie do gromady
-LINE2 Oto obchoǳimy ǲiady
+LINE2 Oto obchodzimy dziady
 WAITF 5600
 CLEAR
 SETLC
@@ -40,8 +40,7 @@ SCENE blank
 ACTOR blank
 WAITF 5650
 PAUSE
-LINE1 Akt
-LINE2 I
+LINE1 Akt I
 DELAY 3
 CLEAR
 START
@@ -57,20 +56,20 @@ WAITF 7300
 LINE0 choć człowiekiem dobrym byłem
 LINE1 w życiu złego nie czyniłem
 LINE2 biednym zawsze pomagałem
-LINE3 500+ sfinansowałem
+LINE3 pięćset plus sfinansowałem
 WAITF 8950
 CLEAR
 WAITF 9050
 ACTOR dziewcze
 SCENE dziewcze
-LINE0 dziewczynę w lesie zabili
-LINE1 skopali ją i pobili
-LINE2 ona ta piękna niewinna
+LINE0 Dziewczynę w lesie zabili,
+LINE1 skopali ją i pobili,
+LINE2 ona tak piękna, niewinna
 LINE3 zginąć tak źle nie powinna
 WAITF 10050
 ACTOR dziewcze-dead
 WAITF 10400
-LINE0 ciało to brat jej odnalazł
+LINE0 Ciało to brat jej odnalazł
 LINE1 gdy to zobaczył oszalał
 LINE2 w martwej jej dłoni badylek
 LINE3 a nad nią latał motylek
@@ -82,14 +81,11 @@ SCENE blank
 WAITF 13620
 ACTOR zjawa
 SCENE zjawa
-LINE0 on myśli sobie że to ja
-LINE1 że jestem sprawcą tego zła
+LINE0 On myśli sobie że to ja,
+LINE1 że jestem sprawcą tego zła,
 LINE2 że z zimną krwią jej życie odebrałem
 LINE3 choć jej na oczy nie widziałem
 WAITF 14820
-SCENE dziad
-ACTOR dziad
-WAITF 15420
 SCENE zjawa
 ACTOR zjawa-zla
 WAITF 15950
@@ -102,8 +98,8 @@ WAITF 18000
 WAITF 18400
 SCENE zjawa
 ACTOR zjawa
-LINE0 on myśli sobie że to ja
-LINE1 że jestem sprawcą tego zła
+LINE0 On myśli sobie że to ja,
+LINE1 że jestem sprawcą tego zła,
 LINE2 że z zimną krwią jej życie odebrałem
 LINE3 choć jej na oczy nie widziałem
 WAITF 19600
@@ -118,7 +114,7 @@ ACTOR guslarz-worry
 SCENE guslarz
 LINE0 A czegóż potrzeba dla duszy,
 LINE1 Aby uniknąć katuszy?
-LINE2 Czy prosisz o chwałę nieba?
+LINE2 Czy poprosisz o chwałę nieba?
 LINE3 Czy o poświęcone gody?
 WAITF 23400
 CLEAR
@@ -128,7 +124,7 @@ LINE2 Są owoce i jagody.
 WAITF 24400
 ACTOR guslarz
 LINE1 Mów, czego trzeba dla duszy,
-LINE2 Aby się dostać do nieba?
+LINE2 aby się dostać do nieba?
 WAITF 25200
 CLEAR
 WAITF 25300

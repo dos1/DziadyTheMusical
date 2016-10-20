@@ -25,7 +25,9 @@
 
 struct CommonResources* CreateGameData(struct Game *game) {
 	struct CommonResources *data = calloc(1, sizeof(struct CommonResources));
-	data->script = "akt1";
+	data->script = "akt3";
+
+	data->guilty = rand() % 2;
 
 //	data->music = al_load_audio_stream(GetDataFilePath(game, "music.ogg"), 4, 1024);
 //	al_set_audio_stream_playing(data->music, false);

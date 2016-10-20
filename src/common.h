@@ -5,6 +5,8 @@ struct CommonResources {
 		// Fill in with common data accessible from all gamestates.
 	char *script;
 
+	bool guilty;
+
 	ALLEGRO_AUDIO_STREAM *music;
 };
 

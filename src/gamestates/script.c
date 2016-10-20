@@ -30,10 +30,12 @@ struct GamestateResources {
 		char *cur_emoti;
 
 		char *skip_to;
-
-		bool stopped;
+ALLEGRO_BITMAP *votebmp;
+    bool stopped;
 	float f;
 	  int anim;
+
+		bool vote;
 
 		bool dialog_enabled;
 		int dialog_highlight;
@@ -177,6 +179,25 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text2);
 	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text3);
 
+
+	if (data->vote) {
+
+		al_draw_text(data->font, al_map_rgb(255,255,255), game->viewport.width*0.5, game->viewport.height*0.2, ALLEGRO_ALIGN_CENTER, "Komu ufasz?");
+
+		al_draw_scaled_bitmap(data->votebmp, 0, 0, al_get_bitmap_width(data->votebmp), al_get_bitmap_height(data->votebmp),
+		                      0, 0, game->viewport.width, game->viewport.height, 0);
+		if (data->mousex <  game->viewport.width / 2.0) {
+			al_draw_rectangle(game->viewport.width * 0.2, game->viewport.height * 0.4,
+			                  game->viewport.width * 0.4, game->viewport.height * 0.75,
+			                  al_map_rgb(255,255,255), 4);
+		} else {
+			al_draw_rectangle(game->viewport.width * 0.6, game->viewport.height * 0.4,
+			                  game->viewport.width * 0.8, game->viewport.height * 0.75,
+			                  al_map_rgb(255,255,255), 4);
+
+		}
+	}
+
 	/*if (game->data->music) {
 	char status[255];
 	snprintf(status, 255, "%f", al_get_audio_stream_position_secs(game->data->music));
@@ -248,9 +269,8 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 		}
 	}
 	if (ev->type==ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-		if (data->dialog_enabled) {
-
-			data->selected = data->dialog_highlight;
+		if (data->vote) {
+data->vote = false;
 		} else {
 			data->speech_counter = 1;
 			//data->delay = 1;
@@ -326,7 +346,7 @@ bool LoadMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState 
 	}
 	if (state == TM_ACTIONSTATE_RUNNING) {
 		char path[255];
-		snprintf(path, 255, "%s.ogg", arg);
+		snprintf(path, 255, "%s.flac", arg);
 		if (game->data->music) {
 			al_destroy_audio_stream(game->data->music);
 		}
@@ -436,7 +456,7 @@ bool SetActor(struct Game *game, struct TM_Action *action, enum TM_ActionState s
 	if (state == TM_ACTIONSTATE_INIT) {
 		char path[255];
 
-		snprintf(path, 255, "actors/%s-%s.png", name, "on");
+		snprintf(path, 255, "actors/%s-%s.png", name, game->data->guilty ? "on" : "off");
 		action->arguments = TM_AddToArgs(action->arguments, 1, al_load_bitmap(GetDataFilePath(game, path)));
 	}
 	if (state == TM_ACTIONSTATE_START) {
@@ -453,7 +473,7 @@ bool SetActor(struct Game *game, struct TM_Action *action, enum TM_ActionState s
 		if (data->cur_actor) {
 			free(data->cur_actor);
 		}
-		data->cur_emoti = strdup("on");
+		data->cur_emoti = strdup(game->data->guilty ? "on" : "off");
 		data->cur_actor = strdup(name);
 		data->actor = bitmap;
 	}
@@ -541,6 +561,22 @@ bool SetLine(struct Game *game, struct TM_Action *action, enum TM_ActionState st
 	char* value = TM_GetArg(action->arguments, 2);
 	if (state == TM_ACTIONSTATE_START) {
 		*line = value;
+	}
+	return true;
+}
+
+bool VoteNow(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
+	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
+	if (state == TM_ACTIONSTATE_START) {
+		data->vote = true;
+	}
+	return true;
+}
+
+bool EndVote(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
+	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
+	if (state == TM_ACTIONSTATE_START) {
+		data->vote = false;
 	}
 	return true;
 }
@@ -661,6 +697,12 @@ void InterpretCommand(struct Game *game, struct GamestateResources* data, struct
 		PrintConsole(game, "GO TO");
 		TM_AddAction(timeline, GoTo, TM_AddToArgs(NULL, 2, data, arg), "GoTo");
 
+	} else if (strcmp(cmd, "GUILT") == 0) {
+		PrintConsole(game, "GO TO IF GUILTY");
+		if (game->data->guilty) {
+			TM_AddAction(timeline, GoTo, TM_AddToArgs(NULL, 2, data, arg), "GoToIfGuilty");
+		}
+
 	} else if (strcmp(cmd, "CHECK") == 0) {
 		PrintConsole(game, "GO TO IF SAME");
 		TM_AddAction(timeline, GoToCheck, TM_AddToArgs(NULL, 2, data, arg), "GoToCheck");
@@ -701,6 +743,12 @@ void InterpretCommand(struct Game *game, struct GamestateResources* data, struct
 		TM_AddAction(timeline, WaitFor, TM_AddToArgs(NULL, 2, data, arg), "WaitFor");
 	} else if (strcmp(cmd, "LOADM") == 0) {
 		TM_AddAction(timeline, LoadMusic, TM_AddToArgs(NULL, 2, data, arg), "LoadMusic");
+	} else if (strcmp(cmd, "VOTE!") == 0) {
+		TM_AddAction(timeline, VoteNow, TM_AddToArgs(NULL, 2, data, arg), "VoteNow");
+	} else if (strcmp(cmd, "EVOTE") == 0) {
+		TM_AddAction(timeline, EndVote, TM_AddToArgs(NULL, 2, data, arg), "EndVote");
+	} else if (strcmp(cmd, "LOAD3") == 0) {
+		TM_AddAction(timeline, LoadMusic, TM_AddToArgs(NULL, 2, data, game->data->guilty ? "akt3" : "akt32"), "LoadMusic");
 	} else if (strcmp(cmd, "CLEAR") == 0) {
 		TM_AddAction(timeline, SetLine, TM_AddToArgs(NULL, 3, data, &data->text0, arg), "Line0");
 		TM_AddAction(timeline, SetLine, TM_AddToArgs(NULL, 3, data, &data->text1, arg), "Line1");
@@ -717,13 +765,14 @@ void* Gamestate_Load(struct Game *game, void (*progress)(struct Game*)) {
 	// Good place for allocating memory, loading bitmaps etc.
 	struct GamestateResources *data = calloc(1, sizeof(struct GamestateResources)); // everything is NULL at this point
 
-	data->font = al_load_font(GetDataFilePath(game, "fonts/DejaVuSansMono.ttf"), game->viewport.height * 0.04, 0);
+	data->font = al_load_font(GetDataFilePath(game, "fonts/Cinzel-Regular.ttf"), game->viewport.height * 0.045, 0);
 
 	char path[255];
 	snprintf(path, 255, "scripts/%s.sd", game->data->script);
 	data->script_file = al_fopen(GetDataFilePath(game, path), "r");
 	data->icon = al_load_bitmap(GetDataFilePath(game, GetGameName(game, "icons/%s.png")));
 	data->cursor = al_load_bitmap(GetDataFilePath(game, "cursor.png"));
+	data->votebmp = al_load_bitmap(GetDataFilePath(game, "vote.png"));
 
 	data->timeline = TM_Init(game, "script");
 
