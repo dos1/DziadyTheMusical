@@ -41,7 +41,6 @@ int main(int argc, char** argv) {
 	al_set_app_name(PRETTY_GAMENAME);
 
 	struct Game *game = libsuperderpy_init(argc, argv, GAMENAME, (struct Viewport){.aspect = 1920/1080.0});
-	//struct Game *game = libsuperderpy_init(argc, argv, GAMENAME, (struct Viewport){1920,1080});
 	if (!game) { return 1; }
 
 	al_set_window_title(game->display, PRETTY_GAMENAME);
