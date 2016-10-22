@@ -174,10 +174,10 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 
 	int leftpos = data->central ? game->viewport.width*0.5 : game->viewport.width*0.3;
 
-	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 - al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text0);
-	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 - al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text1);
-	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text2);
-	al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text3);
+	if (data->text0) al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 - al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text0);
+	if (data->text1) al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 - al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text1);
+	if (data->text2) al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 0.75, ALLEGRO_ALIGN_CENTER, data->text2);
+	if (data->text3) al_draw_text(data->font, al_map_rgb(255,255,255), leftpos, game->viewport.height*0.5 + al_get_font_line_height(data->font) * 2, ALLEGRO_ALIGN_CENTER, data->text3);
 
 
 	if (data->vote) {
