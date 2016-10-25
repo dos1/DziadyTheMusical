@@ -531,7 +531,6 @@ bool SetScene(struct Game *game, struct TM_Action *action, enum TM_ActionState s
 
 
 bool StartMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
-	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	if (state == TM_ACTIONSTATE_START) {
 		al_set_audio_stream_playing(game->data->music, true);
 	}
@@ -539,7 +538,6 @@ bool StartMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState
 }
 
 bool PauseMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
-	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	if (state == TM_ACTIONSTATE_START) {
 		al_set_audio_stream_playing(game->data->music, false);
 	}
@@ -556,7 +554,6 @@ bool SetCentral(struct Game *game, struct TM_Action *action, enum TM_ActionState
 }
 
 bool SetLine(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
-	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	char** line = TM_GetArg(action->arguments, 1);
 	char* value = TM_GetArg(action->arguments, 2);
 	if (state == TM_ACTIONSTATE_START) {
