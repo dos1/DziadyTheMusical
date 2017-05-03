@@ -171,7 +171,7 @@ void Gamestate_Start(struct Game *game, struct GamestateResources* data) {
 
 void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, ALLEGRO_EVENT *ev) {
 	TM_HandleEvent(data->timeline, ev);
-	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE)) {
+	if (((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE)) || (ev->type == ALLEGRO_EVENT_TOUCH_END)) {
 		SwitchCurrentGamestate(game, SKIP_GAMESTATE);
 	}
 }
@@ -179,9 +179,12 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 void* Gamestate_Load(struct Game *game, void (*progress)(struct Game*)) {
 	struct GamestateResources *data = malloc(sizeof(struct GamestateResources));
 	data->timeline = TM_Init(game, "main");
-	data->bitmap = al_create_bitmap(game->viewport.width, game->viewport.height);
 	data->checkerboard = al_create_bitmap(game->viewport.width, game->viewport.height);
+	int flags = al_get_new_bitmap_flags();
+	al_add_new_bitmap_flag(ALLEGRO_NO_PRESERVE_TEXTURE);
 	data->pixelator = al_create_bitmap(game->viewport.width, game->viewport.height);
+	data->bitmap = al_create_bitmap(game->viewport.width, game->viewport.height);
+	al_set_new_bitmap_flags(flags);
 
 	al_set_target_bitmap(data->checkerboard);
 	al_lock_bitmap(data->checkerboard, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_WRITEONLY);
@@ -243,7 +246,13 @@ void Gamestate_Unload(struct Game *game, struct GamestateResources* data) {
 	free(data);
 }
 
-void Gamestate_Reload(struct Game *game, struct GamestateResources* data) {}
+void Gamestate_Reload(struct Game *game, struct GamestateResources* data) {
+	int flags = al_get_new_bitmap_flags();
+	al_add_new_bitmap_flag(ALLEGRO_NO_PRESERVE_TEXTURE);
+	data->pixelator = al_create_bitmap(game->viewport.width, game->viewport.height);
+	data->bitmap = al_create_bitmap(game->viewport.width, game->viewport.height);
+	al_set_new_bitmap_flags(flags);
+}
 
 void Gamestate_Pause(struct Game *game, struct GamestateResources* data) {
 	TM_Pause(data->timeline);

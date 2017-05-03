@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(DziadyTheMusical C)
 
+add_definitions(-DLIBSUPERDERPY_MOUSE_EMULATION)
+
 SET(LIBSUPERDERPY_GAMENAME "dziadythemusical" CACHE INTERNAL "")
 SET(LIBSUPERDERPY_GAMENAME_PRETTY "Dziady The Musical" CACHE INTERNAL "")
 
