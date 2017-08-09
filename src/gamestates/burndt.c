@@ -72,7 +72,7 @@ void Gamestate_Start(struct Game *game, struct burndtResources* data) {
 }
 
 void Gamestate_ProcessEvent(struct Game *game, struct burndtResources* data, ALLEGRO_EVENT *ev) {
-	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE)) {
+	if (((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE)) || (ev->type == ALLEGRO_EVENT_TOUCH_END)) {
 		    SwitchGamestate(game, "burndt", "script");
 	}
 }

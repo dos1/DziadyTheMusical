@@ -6,7 +6,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -15,8 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "../common.h"
@@ -120,8 +119,8 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 		al_set_target_bitmap(data->bitmap);
 		al_clear_to_color(al_map_rgba(0,0,0,0));
 
-		al_draw_text(data->font, al_map_rgba(255,255,255,10), game->viewport.width/2,
-		             game->viewport.height*0.4167, ALLEGRO_ALIGN_CENTRE, t);
+		al_draw_text(data->font, al_map_rgba(255,255,255,10), 320/2,
+		             180*0.4167, ALLEGRO_ALIGN_CENTRE, t);
 
 		double tg = tan(-data->tan/384.0 * ALLEGRO_PI - ALLEGRO_PI/2);
 
@@ -142,7 +141,7 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 
 		al_set_target_backbuffer(game->display);
 
-		al_draw_bitmap(data->pixelator, 0, 0, 0);
+		al_draw_scaled_bitmap(data->pixelator, 0, 0, 320, 180, 0, 0, game->viewport.width, game->viewport.height, 0);
 
 	}
 }
@@ -173,18 +172,18 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 	TM_HandleEvent(data->timeline, ev);
 	if (((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ESCAPE)) || (ev->type == ALLEGRO_EVENT_TOUCH_END)) {
 		SwitchCurrentGamestate(game, SKIP_GAMESTATE);
+		if (strcmp(SKIP_GAMESTATE, NEXT_GAMESTATE) != 0) {
+			UnloadGamestate(game, NEXT_GAMESTATE);
+		}
 	}
 }
 
 void* Gamestate_Load(struct Game *game, void (*progress)(struct Game*)) {
 	struct GamestateResources *data = malloc(sizeof(struct GamestateResources));
 	data->timeline = TM_Init(game, "main");
-	data->checkerboard = al_create_bitmap(game->viewport.width, game->viewport.height);
-	int flags = al_get_new_bitmap_flags();
-	al_add_new_bitmap_flag(ALLEGRO_NO_PRESERVE_TEXTURE);
-	data->pixelator = al_create_bitmap(game->viewport.width, game->viewport.height);
-	data->bitmap = al_create_bitmap(game->viewport.width, game->viewport.height);
-	al_set_new_bitmap_flags(flags);
+	data->bitmap = CreateNotPreservedBitmap(320, 180);
+	data->checkerboard = al_create_bitmap(320, 180);
+	data->pixelator = CreateNotPreservedBitmap(320, 180);
 
 	al_set_target_bitmap(data->checkerboard);
 	al_lock_bitmap(data->checkerboard, ALLEGRO_PIXEL_FORMAT_ANY, ALLEGRO_LOCK_WRITEONLY);
@@ -202,7 +201,7 @@ void* Gamestate_Load(struct Game *game, void (*progress)(struct Game*)) {
 	(*progress)(game);
 
 	data->font = al_load_ttf_font(GetDataFilePath(game, "fonts/DejaVuSansMono.ttf"),
-	                              (int)(game->viewport.height*0.1666 / 8) * 8 ,0 );
+	                              (int)(180*0.1666 / 8) * 8, 0);
 	(*progress)(game);
 	data->sample = al_load_sample( GetDataFilePath(game, "dosowisko.flac") );
 	data->sound = al_create_sample_instance(data->sample);
@@ -247,11 +246,8 @@ void Gamestate_Unload(struct Game *game, struct GamestateResources* data) {
 }
 
 void Gamestate_Reload(struct Game *game, struct GamestateResources* data) {
-	int flags = al_get_new_bitmap_flags();
-	al_add_new_bitmap_flag(ALLEGRO_NO_PRESERVE_TEXTURE);
-	data->pixelator = al_create_bitmap(game->viewport.width, game->viewport.height);
-	data->bitmap = al_create_bitmap(game->viewport.width, game->viewport.height);
-	al_set_new_bitmap_flags(flags);
+	data->bitmap = CreateNotPreservedBitmap(320, 180);
+	data->pixelator = CreateNotPreservedBitmap(320, 180);
 }
 
 void Gamestate_Pause(struct Game *game, struct GamestateResources* data) {

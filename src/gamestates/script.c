@@ -61,6 +61,7 @@ ALLEGRO_BITMAP *votebmp;
 		int dialog_count;
 
 		int delay;
+		int wait_for;
 
 		char *speech;
 		char *status;
@@ -222,6 +223,7 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_FULLSTOP)) {
 		data->speech_counter = 0;
 		data->delay = 0;
+		data->wait_for = 0;
 		data->dialog_skip = true;
 		TM_SkipDelay(data->timeline);
 	}
@@ -268,16 +270,26 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 			}
 		}
 	}
+
+	if ((ev->type==ALLEGRO_EVENT_TOUCH_BEGIN) || (ev->type==ALLEGRO_EVENT_TOUCH_MOVE)) {
+		data->mousex = (ev->touch.x / (float)al_get_display_width(game->display)) * game->viewport.width;
+		data->mousey = (ev->touch.y / (float)al_get_display_height(game->display)) * game->viewport.height;
+	}
+
 	if (ev->type==ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
 		if (data->vote) {
 data->vote = false;
 		} else {
 			data->speech_counter = 1;
 			//data->delay = 1;
+			if (data->wait_for) {
+				al_seek_audio_stream_secs(game->data->music, data->wait_for/100);
+			}
 			if (data->delay) {
-			al_seek_audio_stream_secs(game->data->music, data->delay/100);
+				al_seek_audio_stream_secs(game->data->music, al_get_audio_stream_position_secs(game->data->music) + data->delay/100);
 			}
 			data->delay = 0;
+			data->wait_for = 0;
 			TM_SkipDelay(data->timeline);
 		}
 	}
@@ -327,11 +339,11 @@ bool WaitFor(struct Game *game, struct TM_Action *action, enum TM_ActionState st
 	char *arg = TM_GetArg(action->arguments, 1);
 	if (state == TM_ACTIONSTATE_START) {
 		if (data->skip_to) { return true; }
-		data->delay = strtoumax(arg, NULL, 10);
+		data->wait_for = strtoumax(arg, NULL, 10);
 	}
 	if (state == TM_ACTIONSTATE_RUNNING) {
 		if (data->skip_to) { return true; }
-		return !(al_get_audio_stream_position_secs(game->data->music) * 100 < data->delay);
+		return !(al_get_audio_stream_position_secs(game->data->music) * 100 < data->wait_for);
 	}
 	return true;
 }
@@ -342,7 +354,8 @@ bool LoadMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState 
 	char *arg = TM_GetArg(action->arguments, 1);
 	if (state == TM_ACTIONSTATE_START) {
 		if (data->skip_to) { return true; }
-		data->delay = strtoumax(arg, NULL, 10);
+		data->delay = 0;
+		data->wait_for = 0;
 	}
 	if (state == TM_ACTIONSTATE_RUNNING) {
 		char path[255];
@@ -531,7 +544,6 @@ bool SetScene(struct Game *game, struct TM_Action *action, enum TM_ActionState s
 
 
 bool StartMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
-	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	if (state == TM_ACTIONSTATE_START) {
 		al_set_audio_stream_playing(game->data->music, true);
 	}
@@ -539,7 +551,6 @@ bool StartMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState
 }
 
 bool PauseMusic(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
-	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	if (state == TM_ACTIONSTATE_START) {
 		al_set_audio_stream_playing(game->data->music, false);
 	}
@@ -556,7 +567,6 @@ bool SetCentral(struct Game *game, struct TM_Action *action, enum TM_ActionState
 }
 
 bool SetLine(struct Game *game, struct TM_Action *action, enum TM_ActionState state) {
-	struct GamestateResources *data = TM_GetArg(action->arguments, 0);
 	char** line = TM_GetArg(action->arguments, 1);
 	char* value = TM_GetArg(action->arguments, 2);
 	if (state == TM_ACTIONSTATE_START) {
@@ -792,6 +802,7 @@ void Gamestate_Unload(struct Game *game, struct GamestateResources* data) {
 	al_destroy_font(data->font);
 	al_fclose(data->script_file);
 	TM_Destroy(data->timeline);
+	al_destroy_bitmap(data->votebmp);
 	if (data->scene) {
 		al_destroy_bitmap(data->scene);
 	}

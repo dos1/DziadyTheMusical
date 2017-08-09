@@ -26,7 +26,7 @@
 struct CommonResources* CreateGameData(struct Game *game) {
 	struct CommonResources *data = calloc(1, sizeof(struct CommonResources));
 	data->script = "akt1";
-
+	data->music = NULL;
 	data->guilty = rand() % 2;
 
 //	data->music = al_load_audio_stream(GetDataFilePath(game, "music.ogg"), 4, 1024);
@@ -39,5 +39,8 @@ struct CommonResources* CreateGameData(struct Game *game) {
 }
 
 void DestroyGameData(struct Game *game, struct CommonResources *data) {
+	if (game->data->music) {
+		al_destroy_audio_stream(game->data->music);
+	}
 	free(data);
 }
