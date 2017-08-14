@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
 	if (!game) { return 1; }
 
 	al_set_window_title(game->display, PRETTY_GAMENAME);
+	al_inhibit_screensaver(true);
 
 	LoadGamestate(game, "dosowisko");
 	StartGamestate(game, "dosowisko");
